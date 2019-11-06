@@ -1,0 +1,45 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "clear clear divide multiply" "seven eight nine minus" "four five six plus" "one two three equal" "zero zero decimal equal";
+
+  .equal { grid-area: equal; }
+  
+  .decimal { grid-area: decimal; }
+  
+  .zero { grid-area: zero; }
+  
+  .one { grid-area: one; }
+  
+  .two { grid-area: two; }
+  
+  .three { grid-area: three; }
+  
+  .four { grid-area: four; }
+  
+  .five { grid-area: five; }
+  
+  .six { grid-area: six; }
+  
+  .seven { grid-area: seven; }
+  
+  .eight { grid-area: eight; }
+  
+  .nine { grid-area: nine; }
+  
+  .plus { grid-area: plus; }
+  
+  .minus { grid-area: minus; }
+  
+  .multiply { grid-area: multiply; }
+  
+  .divide { grid-area: divide; }
+  
+  .clear { grid-area: clear; }
+
+  button{
+    height: 100%;
+    width: 100%;
+  }
+}
