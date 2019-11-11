@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 .grid-container {
   display: -ms-grid;
   display: grid;
@@ -113,8 +117,7 @@
   grid-area: clear;
 }
 
-.grid-container button {
-  height: 100%;
-  width: 100%;
+#display {
+  font-size: 3rem;
 }
 /*# sourceMappingURL=style.css.map */

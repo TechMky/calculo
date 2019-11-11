@@ -1,5 +1,9 @@
+html,body{
+  height: 100%;
+}
 .grid-container {
     display: grid;
+    // max-width: 50%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: "clear clear divide multiply" "seven eight nine minus" "four five six plus" "one two three equal" "zero zero decimal equal";
@@ -38,8 +42,12 @@
   
   .clear { grid-area: clear; }
 
-  button{
-    height: 100%;
-    width: 100%;
-  }
+  // button{
+  //   height: 100%;
+  //   width: 100%;
+  // }
+}
+#display{
+  font-size: 3rem;
+
 }
