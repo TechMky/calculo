@@ -1,43 +1,70 @@
+import { isSafeNumber, canAppendOperator, isMathExpression } from "./js/validation.js";
+
 export default class App {
-    re = /(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/;
+    
     constructor(params){
         this.expression = ""
         this.numericPads = document.querySelectorAll('.numeric')
         this.display = document.getElementById('display') 
+        this.operatorPads = document.querySelectorAll('.operator')
+        this.equalButton = document.getElementById('equals')
+        this.decimalButton = document.getElementById('decimal')
     }
     initialize (param) {
 
        this.numericPads.forEach(element => {
            element.addEventListener('click', this.handleNumericClick.bind(this))
        })
+
+       this.operatorPads.forEach(element => {
+           element.addEventListener('click', this.handleOperatorClick.bind(this))
+       })
+
+       this.equalButton.addEventListener('click', this.handleEqualClick.bind(this))
+
+       this.decimalButton.addEventListener('click', this.handleDecimalClick.bind(this))
     }
 
     handleNumericClick (event) {
         let number = event.currentTarget.children[0].textContent
-        this.updateDisplay(number)
+        if(isSafeNumber(number))
+            this.setExpression(number)
+        else
+            alert("Number Limit Exceeded.")
     }
 
-    updateDisplay(expression){
-        if(this.setExpression(expression) == true){
-            this.display.textContent = this.expression;
+    handleOperatorClick (event) {
+        let operator = event.currentTarget.children[0].textContent
+        if(canAppendOperator(this.expression, operator))
+            this.setExpression(operator)
+        else
+            alert("Not a valid Math Expression.")
+    }
+
+    handleEqualClick (event){
+        if (isMathExpression(this.expression)) {
+            this.setExpression(math.evaluate(this.expression), true)
+        }else{
+            alert("Not a valid Math Expression.")
         }
     }
 
-    setExpression(expression){
-        if( (expression < Number.MAX_SAFE_INTEGER && this.expression < Number.MAX_SAFE_INTEGER ) 
-            && (this.expression > Number.MIN_SAFE_INTEGER && expression > Number.MIN_SAFE_INTEGER)
-            && this.isMathExpression(expression) && this.isMathExpression(this.expression) ){
-            this.expression += expression
-            return true
-        }//else if(this.isMathExpression(expression)){
-        //     this.expression += expression
-        //     return true
+    handleDecimalClick (event){
+        
+    }
+
+    updateDisplay(){
+        this.display.textContent = this.expression;
+    }
+
+    setExpression(expression, isResult){
+        if(isResult){
+            this.expression = expression
+        }
         else{
-            return false
+            this.expression += expression
         }
+        this.updateDisplay()
     }
 
-    isMathExpression(expression){
-        return this.re.test(expression)
-    }
 }
